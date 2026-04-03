@@ -1,65 +1,67 @@
-import os
 import json
+import traceback
 from oracle_agent import OracleAgent
-from creator_agent import CreatorAgent
-from strategist_agent import StrategistAgent
+from strategist_agent import OverlordAgent
+from community_agent import CommunityAgent
+from visual_agent import VisualAgent
 from admin_agent import AdminAgent
-from publisher_agent import PublisherAgent
 from memory import SwarmMemory
 
 def run_swarm():
-    print("Initializing Swarm...")
-    memory = SwarmMemory()
-    logs = []
-    
     try:
-        # Phase 1: Strategist feedback
-        strat = StrategistAgent()
-        directive = strat.analyze(memory.get_data().get("performance_logs", []))
-        print(f"Strat Directive: {directive}")
-        logs.append(f"Strategist Directive: {directive}")
-        
-        # Phase 2: Oracle research
+        print("--- INITIATING SWARM V5 ---")
+        logs = []
+        memory = SwarmMemory()
+        history = memory.load()
+
+        # Phase 1: Oracle Gathering
         oracle = OracleAgent()
-        brief_str = oracle.gather_data()
-        brief = json.loads(brief_str)
-        memory.update_research(brief)
-        print("Oracle gathered intel.")
-        logs.append("Oracle gathered intel successfully.")
+        market_data = oracle.gather_intelligence()
+        logs.append(f"Oracle data gathered: {market_data[:50]}...")
         
-        # Phase 3: Creator generation
-        creator = CreatorAgent()
-        # Inject strategist directive into brief
-        brief["directive"] = directive
-        content_str = creator.generate_content(json.dumps(brief))
-        content = json.loads(content_str)
-        memory.add_content(content)
-        print("Creator generated content.")
-        logs.append("Creator generated thread and video scripts.")
+        # Phase 2: Overlord Strategy
+        overlord = OverlordAgent()
+        strategy = overlord.formulate_strategy(market_data, history.get("performance_logs", []))
+        logs.append("Overlord formulated strategy.")
         
-        # Save output for other scripts
+        # Phase 3: Specialized Content Generation & Publishing
+        # Community (Text) Agent
+        community = CommunityAgent()
+        community_content = community.generate_and_publish(market_data, strategy.get("directive_for_community_agent", ""))
+        logs.append("Community Agent finished Twitter & Reddit operations.")
+        
+        # Visual (Video) Agent
+        visual = VisualAgent()
+        visual_content = visual.generate_and_publish(market_data, strategy.get("directive_for_visual_agent", ""))
+        logs.append("Visual Agent finished YouTube & TikTok operations.")
+        
+        # Compile content for record
+        combined_content = {
+            "community": community_content,
+            "visual": visual_content
+        }
+        
         with open("daily_content.json", "w", encoding="utf-8") as f:
-            json.dump(content, f, ensure_ascii=False, indent=4)
+            json.dump(combined_content, f, ensure_ascii=False, indent=4)
             
-        # Phase 4: Publisher Distribution
-        publisher = PublisherAgent()
-        plan = publisher.determine_schedule(json.dumps(content))
-        dist_status = publisher.execute_plan(plan)
-        logs.append(f"Publisher: {dist_status}")
-        
         success = True
     except Exception as e:
         print(f"Swarm Error: {e}")
-        logs.append(f"ERROR: {str(e)}")
+        print(traceback.format_exc())
+        logs.append(f"CRITICAL ERROR: {e}")
         success = False
-        content_str = "{}"
-        
-    # Phase 4: Admin reporting
+
+    # Phase 4: Admin Reporting
+    admin_summary = f"SWARM V5 CYCLE COMPLETED.\nSUCCESS: {success}\nLOGS:\n" + "\n".join(logs)
     admin = AdminAgent()
-    admin.report(content_str, logs)
+    admin.send_report(admin_summary)
     
-    if success:
-        memory.log_performance({"date": memory.get_data()["last_run"], "status": "success", "items_created": 2})
+    # Save memory
+    history["performance_logs"].append(admin_summary)
+    # Keep last 5 logs to not bloat memory
+    if len(history["performance_logs"]) > 5:
+        history["performance_logs"].pop(0)
+    memory.save(history)
 
 if __name__ == "__main__":
     run_swarm()
