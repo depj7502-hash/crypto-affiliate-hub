@@ -1,84 +1,83 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoHub 2026 | Лучшие биржи и инструменты</title>
-    <meta name="description" content="Сравнение лучших криптовалютных бирж 2026 года. Эксклюзивные бонусы и низкие комиссии.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Crypto Empire | Trade & Earn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="glass-bg"></div>
-    
-    <header>
-        <nav>
-            <div class="logo">CRYPTO<span>HUB</span></div>
-            <ul>
-                <li><a href="#exchanges">Биржи</a></li>
-                <li><a href="https://crypto-portfolio-tracker.github.io/" class="nav-tool">Инструменты</a></li>
-                <li><a href="#news">Новости</a></li>
-            </ul>
-        </nav>
+    <div class="pixel-overlay"></div>
+    <header class="pixel-box">
+        <h1 class="glitch" data-text="CRYPTO_EMPIRE">CRYPTO_EMPIRE</h1>
+        <p>THE ULTIMATE PIXEL TRADING HUB</p>
     </header>
 
     <main>
-        <section class="hero">
-            <h1 class="reveal">Твои ворота в <span>Крипто-Империю</span> 2026</h1>
-            <p class="description">Сравниваем лучшие биржи, экономим на комиссиях и зарабатываем больше. Только проверенные площадки.</p>
-            <div class="cta-group">
-                <a href="#exchanges" class="btn primary">Найти биржу</a>
-                <a href="#tool" class="btn secondary">Открыть Трекер</a>
+        <section class="pixel-box highlight" id="hero">
+            <h2>START TRADING NOW</h2>
+            <p>Join the best exchanges with our exclusive links and get 0% fees, huge deposit bonuses, and lifetime VIP status.</p>
+        </section>
+
+        <section id="exchanges">
+            <!-- MEXC -->
+            <div class="exchange-card pixel-box">
+                <div class="tag pixel-border">#1 TRENDING</div>
+                <h3>MEXC GLOBAL</h3>
+                <ul class="pixel-list">
+                    <li>[+] 0% Trading Fees</li>
+                    <li>[+] Best Altcoin selection</li>
+                    <li>[+] Up to 200x Leverage</li>
+                </ul>
+                <a href="#" id="mexc-link" class="pixel-btn green">TRADE ON MEXC ></a>
+            </div>
+
+            <!-- Bybit -->
+            <div class="exchange-card pixel-box">
+                <div class="tag pixel-border">MAX LIQUIDITY</div>
+                <h3>BYBIT</h3>
+                <ul class="pixel-list">
+                    <li>[+] $30k Deposit Bonus</li>
+                    <li>[+] High liquidity</li>
+                    <li>[+] Copy Trading Pro</li>
+                </ul>
+                <a href="#" id="bybit-link" class="pixel-btn yellow">TRADE ON BYBIT ></a>
+            </div>
+
+            <!-- Binance -->
+            <div class="exchange-card pixel-box">
+                <div class="tag pixel-border">SAFEST</div>
+                <h3>BINANCE</h3>
+                <ul class="pixel-list">
+                    <li>[+] World's largest</li>
+                    <li>[+] Deepest markets</li>
+                    <li>[+] Lowest spreads</li>
+                </ul>
+                <a href="#" id="binance-link" class="pixel-btn blue">TRADE ON BINANCE ></a>
             </div>
         </section>
 
-        <section id="exchanges" class="grid-section">
-            <h2 class="section-title">Топ Бирж с Бонусами</h2>
-            <div class="exchange-grid" id="exchange-container">
-                <!-- Контент генерируется скриптом -->
-                <div class="card premium">
-                    <div class="badge">Выбор недели</div>
-                    <h3>MEXC Global</h3>
-                    <div class="features">
-                        <span>0% спот комиссия</span>
-                        <span>50% бонус рефералам</span>
-                    </div>
-                    <a href="https://www.mexc.com/register?inviteCode=YOUR_CODE" class="btn card-btn">Забрать бонус</a>
-                </div>
-
-                <div class="card">
-                    <h3>Bybit</h3>
-                    <div class="features">
-                        <span>Бонус до $30,000</span>
-                        <span>Лучший P2P</span>
-                    </div>
-                    <a href="https://www.bybit.com/register?affiliate_id=YOUR_CODE" class="btn card-btn">Регистрация</a>
-                </div>
-
-                <div class="card">
-                    <h3>Binance</h3>
-                    <div class="features">
-                        <span>Топ ликвидность</span>
-                        <span>Низкие комиссии</span>
-                    </div>
-                    <a href="https://accounts.binance.com/register?ref=YOUR_CODE" class="btn card-btn">Начать</a>
-                </div>
+        <!-- Dynamic News Section -->
+        <section class="pixel-box highlight" id="news">
+            <h2>LATEST INTEL</h2>
+            <p class="subtitle">Click to get details in our Telegram channel.</p>
+            <div id="news-container">
+                <div class="loading-blinker">LOADING...</div>
             </div>
         </section>
-
-        <section id="news" class="news-section">
-            <h2 class="section-title">Live Аналитика</h2>
-            <div class="news-list" id="news-container">
-                <p class="loading">Загрузка актуальных данных...</p>
-            </div>
+        
+        <!-- Tracker Ad -->
+        <section class="pixel-box" id="tracker-ad">
+            <h2>PORTFOLIO TRACKER</h2>
+            <p>Manage your pixelated wealth.</p>
+            <a href="../crypto-portfolio-tracker/" class="pixel-btn purple">LAUNCH SATELLITE ></a>
         </section>
+
     </main>
 
-    <footer>
-        <p>&copy; 2026 CryptoHub. Все права защищены. Только для образовательных целей.</p>
-        <div class="wallet-info">Update your wallet: <span id="wallet-addr">0x...</span></div>
+    <footer class="pixel-box">
+        <p>SYSTEM OK. Wallet Connected: <span id="wallet-addr" class="loading-blinker">WAITING...</span></p>
     </footer>
 
     <script src="script.js"></script>
