@@ -4,6 +4,7 @@ from oracle_agent import OracleAgent
 from creator_agent import CreatorAgent
 from strategist_agent import StrategistAgent
 from admin_agent import AdminAgent
+from publisher_agent import PublisherAgent
 from memory import SwarmMemory
 
 def run_swarm():
@@ -36,10 +37,16 @@ def run_swarm():
         print("Creator generated content.")
         logs.append("Creator generated thread and video scripts.")
         
-        # Save output for other scripts (e.g. video_generator.py to use)
+        # Save output for other scripts
         with open("daily_content.json", "w", encoding="utf-8") as f:
             json.dump(content, f, ensure_ascii=False, indent=4)
             
+        # Phase 4: Publisher Distribution
+        publisher = PublisherAgent()
+        plan = publisher.determine_schedule(json.dumps(content))
+        dist_status = publisher.execute_plan(plan)
+        logs.append(f"Publisher: {dist_status}")
+        
         success = True
     except Exception as e:
         print(f"Swarm Error: {e}")
