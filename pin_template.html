@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1000, initial-scale=1.5">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #afff00;
+            --bg: #0a0a0a;
+        }
+        body {
+            width: 1000px;
+            height: 1500px;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at 50% 50%, #2a0055 0%, var(--bg) 100%);
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+        .grid {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+        }
+        .content {
+            z-index: 2;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 150px;
+        }
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+        .logo span { color: var(--primary); }
+        .badge {
+            background: rgba(255,255,255,0.1);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 24px;
+            font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+        .main-title {
+            font-size: 80px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 60px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: linear-gradient(90deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-box {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(175, 255, 0, 0.3);
+            border-radius: 40px;
+            padding: 60px;
+            backdrop-filter: blur(20px);
+            margin-bottom: auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .tip-title {
+            color: var(--primary);
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .tip-text {
+            font-size: 45px;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+        .footer {
+            margin-top: auto;
+            text-align: center;
+        }
+        .cta {
+            background: var(--primary);
+            color: #000;
+            display: inline-block;
+            padding: 30px 60px;
+            border-radius: 20px;
+            font-size: 35px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 50px rgba(175, 255, 0, 0.4);
+        }
+        .social {
+            font-size: 30px;
+            opacity: 0.7;
+        }
+        .social span { color: var(--primary); font-weight: 700; }
+    </style>
+</head>
+<body>
+    <div class="grid"></div>
+    <div class="content">
+        <div class="header">
+            <div class="logo">CRYPTO<span>HUB</span></div>
+            <div class="badge">🔥 ТРЕНД 2026</div>
+        </div>
+        
+        <div class="main-title" id="headline">
+            Как заработать на падении Биткоина?
+        </div>
+
+        <div class="glass-box">
+            <div class="tip-title">⚡ ИНСАЙД УШЕДШЕГО ДНЯ</div>
+            <div class="tip-text" id="description">
+                Используй шорт-позиции с кредитным плечом на MEXC. Переходи в наш Telegram канал, чтобы получить точные сигналы и бонус 0% на комиссии.
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="cta">ВХОД В ТЕЛЕГРАМ →</div>
+            <div class="social">Больше инсайтов в канале: <span id="tg-handle">@crypto_insider</span></div>
+        </div>
+    </div>
+</body>
+</html>
