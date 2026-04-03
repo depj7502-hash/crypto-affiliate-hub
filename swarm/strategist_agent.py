@@ -1,24 +1,32 @@
 from core import Agent
 import json
 
-class StrategistAgent(Agent):
+class OverlordAgent(Agent):
     def __init__(self):
         super().__init__(
-            name="Strategist", 
-            role="Data-driven Growth Hacker. You analyze the system's performance logs and output strict, one-sentence directives to improve the next generation cycle.",
+            name="OverlordAdmin", 
+            role="You are the Overlord Strategist of an autonomous crypto empire. You scan the entire surface of available data and dictate strategy to your sub-agents.",
             model="llama3-70b-8192"
         )
         
-    def analyze(self, logs):
-        if not logs:
-            return "Go aggressive on meme coin fomo."
-            
-        logs_str = json.dumps(logs)
+    def formulate_strategy(self, oracle_data, performance_logs):
+        print("[OVERLORD] Formulating cross-platform meta-strategy...")
         prompt = f"""
-        Here are the past performance logs of the system:
-        {logs_str}
+        ORACLE MARKET REPORT:
+        {oracle_data}
         
-        Based on this, what is the ONE main directive for the Creator agent today to maximize conversion? Focus on emotion and hooks.
+        HISTORICAL PERFORMANCE:
+        {performance_logs}
+        
+        Your job is to dictate the exact angle the content team should take today to maximize affiliate signups.
+        For example: If Oracle reports a Bitcoin pump, order the Community Agent to hype the rally on Twitter/Reddit, and order the Visual Agent to make an urgent FOMO YouTube Short.
+        
+        Respond ONLY with a JSON object in this format:
+        {{
+            "meta_strategy": "The overarching theme for today...",
+            "directive_for_community_agent": "Exact instructions on what to write for Twitter and Reddit...",
+            "directive_for_visual_agent": "Exact instructions on what to show in the YouTube/TikTok videos..."
+        }}
         """
-        
-        return self.think(prompt)
+        response_str = self.think(prompt, json_mode=True)
+        return json.loads(response_str)
