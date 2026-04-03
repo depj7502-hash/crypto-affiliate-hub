@@ -2,3 +2,5 @@ requests
 playwright
 Pillow
 python-telegram-bot
+groq
+
