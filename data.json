@@ -1,0 +1,18 @@
+{
+    "last_updated": "2026-04-03 04:00",
+    "news": [
+        {"title": "Bitcoin достиг нового максимума в 2026 году", "time": "2ч назад", "source": "CoinDesk"},
+        {"title": "Ethereum 4.0 обновление: что изменится", "time": "4ч назад", "source": "CoinTelegraph"},
+        {"title": "MEXC снизила комиссии для новых пользователей", "time": "6ч назад", "source": "CryptoNews"},
+        {"title": "Solana обогнала Ethereum по числу транзакций", "time": "8ч назад", "source": "Decrypt"},
+        {"title": "Топ 5 монет для инвестиций в Q2 2026", "time": "12ч назад", "source": "CryptoPanic"}
+    ],
+    "config": {
+        "wallet": "0xYOUR_ETH_ADDRESS",
+        "links": {
+            "mexc": "https://www.mexc.com/register?inviteCode=YOUR_CODE",
+            "bybit": "https://www.bybit.com/register?affiliate_id=YOUR_CODE",
+            "binance": "https://accounts.binance.com/register?ref=YOUR_CODE"
+        }
+    }
+}
