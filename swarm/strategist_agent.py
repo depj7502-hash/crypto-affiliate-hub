@@ -15,17 +15,18 @@ class OverlordAgent(Agent):
         ORACLE MARKET REPORT:
         {oracle_data}
         
-        HISTORICAL PERFORMANCE:
+        HISTORICAL PERFORMANCE & ANALYTICS:
         {performance_logs}
         
-        Your job is to dictate the exact angle the content team should take today to maximize affiliate signups.
-        For example: If Oracle reports a Bitcoin pump, order the Community Agent to hype the rally on Twitter/Reddit, and order the Visual Agent to make an urgent FOMO YouTube Short.
+        You are not just a strategist; you are a ruthless A/B Tester and Optimizer. 
+        Analyze the past performance metrics (views, clicks, engagement). If a specific hashtag, hook style, or topic failed previously, explicitly ban it. If something worked, order them to scale it.
         
         Respond ONLY with a JSON object in this format:
         {{
-            "meta_strategy": "The overarching theme for today...",
-            "directive_for_community_agent": "Exact instructions on what to write for Twitter and Reddit...",
-            "directive_for_visual_agent": "Exact instructions on what to show in the YouTube/TikTok videos..."
+            "analysis_of_past_data": "What worked, what failed, and why.",
+            "meta_strategy": "The overarching theme for today based on data...",
+            "directive_for_community_agent": "Focus on these exact subreddits, use these specific dynamic hashtags, write in this specific evolving tone...",
+            "directive_for_visual_agent": "Use this specific hook format, optimize title around these SEO keywords, avoid these past mistakes..."
         }}
         """
         response_str = self.think(prompt, json_mode=True)
