@@ -4,32 +4,45 @@ import os
 import xml.etree.ElementTree as ET
 from datetime import datetime
 
-# --- КОНФИГУРАЦИЯ (ОТРЕДАКТИРУЙ ЭТО) ---
-CONFIG = {
-    "wallet": "0x5555555555555555555555555555555555555555", # Твой кошелек
-    "affiliate_links": {
-        "mexc": "https://www.mexc.com/register?inviteCode=YOUR_CODE",
-        "bybit": "https://www.bybit.com/register?affiliate_id=YOUR_CODE",
-        "binance": "https://accounts.binance.com/register?ref=YOUR_CODE"
-    },
-    "rss_feeds": [
-        "https://cryptopanic.com/news/rss/",
-        "https://www.coindesk.com/arc/outboundfeeds/rss/",
-        "https://cointelegraph.com/rss"
-    ]
-}
+# Read config from config.json if exists locally, or use env vars
+def load_config():
+    config_path = "../config.json"
+    if os.path.exists(config_path):
+        with open(config_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    print("WARNING: config.json missing, using env defaults.")
+    return {
+        "wallet": os.environ.get("WALLET_ADDRESS", "0x0"),
+        "telegram_channel": os.environ.get("TELEGRAM_CHANNEL_ID", "@your_channel"),
+        "affiliate_links": {
+            "mexc": os.environ.get("MEXC_LINK", "#"),
+            "bybit": os.environ.get("BYBIT_LINK", "#"),
+            "binance": os.environ.get("BINANCE_LINK", "#")
+        }
+    }
+
+CONFIG = load_config()
+RSS_FEEDS = [
+    "https://cryptopanic.com/news/rss/",
+    "https://www.coindesk.com/arc/outboundfeeds/rss/",
+    "https://cointelegraph.com/rss"
+]
 
 def fetch_rss_news(url):
-    """Парсит новости из RSS ленты"""
     try:
         response = requests.get(url, timeout=10)
         root = ET.fromstring(response.content)
         news = []
-        for item in root.findall('.//item')[:5]: # Берем топ-5 новостей из каждой ленты
-            title = item.find('title').text
+        for item in root.findall('.//item')[:3]:
+            title = item.find('title').text.strip()
+            # News redirects directly to TG channel
+            tg_handle = CONFIG.get('telegram_channel', '').replace('@', '')
+            link = f"https://t.me/{tg_handle}" if tg_handle else "#"
+            date = item.find('pubDate').text.strip()
             news.append({
                 "title": title,
-                "time": datetime.now().strftime("%H:%M") # Упрощаем время для UI
+                "link": link,
+                "date": date
             })
         return news
     except Exception as e:
@@ -38,10 +51,8 @@ def fetch_rss_news(url):
 
 def update_site_data():
     all_news = []
-    for feed in CONFIG["rss_feeds"]:
+    for feed in RSS_FEEDS:
         all_news.extend(fetch_rss_news(feed))
-    
-    # Сортируем или обрезаем до топ-10
     all_news = all_news[:10]
 
     data = {
@@ -49,18 +60,15 @@ def update_site_data():
         "news": all_news,
         "config": {
             "wallet": CONFIG["wallet"],
-            "links": CONFIG["affiliate_links"]
+            "links": CONFIG["affiliate_links"],
+            "telegram": CONFIG["telegram_channel"]
         }
     }
     
-    # Сохраняем в папку хаба
-    # Путь зависит от того, где запущен скрипт (локально или в GitHub Actions)
-    output_path = "data.json"
-    
-    with open(output_path, "w", encoding="utf-8") as f:
+    with open("data.json", "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
         
-    print(f"Обновлено {len(all_news)} новостей в {output_path}")
+    print(f"Обновлено {len(all_news)} новостей")
 
 if __name__ == "__main__":
     update_site_data()
