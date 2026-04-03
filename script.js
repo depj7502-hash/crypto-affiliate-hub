@@ -11,16 +11,25 @@ async function loadData() {
         newsContainer.innerHTML = '';
         
         data.news.forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'news-item';
-            div.style.marginBottom = '1rem';
-            div.style.paddingBottom = '1rem';
-            div.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
-            div.innerHTML = `
-                <div style="font-size: 0.8rem; opacity: 0.5;">${item.time}</div>
-                <div style="font-weight: 600;">${item.title}</div>
+            const a = document.createElement('a');
+            a.className = 'news-item';
+            a.href = item.link;
+            a.target = '_blank';
+            a.style.display = 'block';
+            a.style.marginBottom = '1rem';
+            a.style.paddingBottom = '1rem';
+            a.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+            a.style.textDecoration = 'none';
+            a.style.color = 'inherit';
+            a.style.cursor = 'pointer';
+            a.innerHTML = `
+                <div style="font-size: 0.8rem; opacity: 0.5;">${item.date} ↗️ Telegram</div>
+                <div style="font-weight: 600; margin-top: 5px;">${item.title}</div>
             `;
-            newsContainer.appendChild(div);
+            // Add hover effect
+            a.onmouseover = () => a.style.color = '#afff00';
+            a.onmouseout = () => a.style.color = 'inherit';
+            newsContainer.appendChild(a);
         });
 
     } catch (e) {
