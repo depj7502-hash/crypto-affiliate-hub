@@ -1,0 +1,252 @@
+:root {
+    --primary: #00f2ff;
+    --secondary: #7000ff;
+    --bg: #050505;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --text: #ffffff;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+.glass-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 50% 50%, #1a0033 0%, #050505 100%);
+    z-index: -1;
+}
+
+header {
+    padding: 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--primary);
+    text-shadow: 0 0 15px var(--primary);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    opacity: 0.7;
+}
+
+nav a:hover {
+    opacity: 1;
+    color: var(--primary);
+}
+
+.hero {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #fff, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+.description {
+    font-size: 1.2rem;
+    max-width: 600px;
+    opacity: 0.6;
+    margin-bottom: 2rem;
+}
+
+.cta-group {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: none;
+    cursor: pointer;
+}
+
+.btn.primary {
+    background: var(--primary);
+    color: #000;
+    box-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
+}
+
+.btn.secondary {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.grid-section {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.section-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.exchange-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 2.5rem;
+    border-radius: 24px;
+    position: relative;
+    transition: 0.3s;
+    backdrop-filter: blur(5px);
+}
+
+.card:hover {
+    border-color: var(--primary);
+    background: rgba(255,255,255,0.05);
+}
+
+.card.premium {
+    border-color: var(--secondary);
+    box-shadow: 0 10px 40px rgba(112, 0, 255, 0.1);
+}
+
+.badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--secondary);
+    font-size: 0.7rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 800;
+}
+
+.card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.features span {
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+.features span::before {
+    content: '✦ ';
+    color: var(--primary);
+}
+
+.card-btn {
+    display: block;
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.card:hover .card-btn {
+    background: var(--text);
+    color: #000;
+}
+
+.news-section {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.news-list {
+    background: var(--glass);
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+footer {
+    padding: 4rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: 4rem;
+}
+
+.wallet-info {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+#wallet-addr {
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+}
